@@ -1,0 +1,518 @@
+Here is the updated HTML content after applying above edits:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --danger-color: #ff3333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-info h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            color: #666;
+        }
+
+        .settings-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover {
+            background-color: #f0f2f5;
+        }
+
+        .nav-item.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-outline {
+            background: none;
+            border: 1px solid #ddd;
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f2f5;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .validation-message {
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .validation-message.valid {
+            color: var(--success-color);
+            display: block;
+        }
+
+        .validation-message.invalid {
+            color: var(--danger-color);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .settings-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-avatar {
+                margin-bottom: 15px;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-header">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/19c57afd-776b-4fd2-9a81-a01db72c1c93.png" alt="Professional academic profile photo" class="profile-avatar">
+                <div class="profile-info">
+                    <h1>Dr. Sarah Johnson</h1>
+                    <p>Professor of Computer Science<br>
+                    Director, Digital Learning Research Center<br>
+                    Stanford University | ACM Fellow</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="settings-container">
+            <div class="sidebar">
+                <div class="nav-item active" data-tab="personal-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                    Personal Information
+                </div>
+                <div class="nav-item" data-tab="password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                    Password
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div id="success-message" class="success-message">
+                    Your changes have been saved successfully!
+                </div>
+
+                <div id="personal-info" class="tab-content active">
+                    <h2 class="section-title">Personal Information</h2>
+                    <form id="personal-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" class="form-control" value="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Office Phone</label>
+                            <input type="tel" id="phone" class="form-control" value="+1 (650) 987-6543">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="office-hours">Office Hours</label>
+                            <input type="text" id="office-hours" class="form-control" placeholder="Mon/Wed 10am-12pm, By Appointment">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courses">Current Courses (Comma Separated)</label>
+                            <input type="text" id="courses" class="form-control" placeholder="CS101: Intro to Programming, CS401: Advanced Web Development">
+                        </div>
+                        <div class="form-group">
+                            <label for="research">Research Interests</label>
+                            <input type="text" id="research" class="form-control" placeholder="Human-Computer Interaction, EdTech, AI in Education">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" id="department" class="form-control" value="Computer Science">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <select id="position" class="form-control">
+                                <option>Professor</option>
+                                <option>Associate Professor</option>
+                                <option>Assistant Professor</option>
+                                <option>Researcher</option>
+                                <option>PhD Student</option>
+                                <option>TA/RA</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" class="form-control" rows="3">123 Main St, Apt 4B, New York, NY 10001</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publications">Recent Publications (DOI Links)</label>
+                            <textarea id="publications" class="form-control" rows="3" placeholder="10.1145/123456789, 10.1145/987654321"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Academic Profile</label>
+                            <textarea id="bio" class="form-control" rows="4">Full Professor in Computer Science with 15+ years experience in educational technology research. Primary research areas include accessible learning platforms, AI-assisted education, and human-centered design. Published over 50 peer-reviewed papers in ACM and IEEE venues. Currently leading NSF-funded project on adaptive learning systems.</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+
+                <div id="password" class="tab-content">
+                    <h2 class="section-title">Change Password</h2>
+                    <form id="password-form">
+                        <div class="form-group password-container">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" class="form-control">
+                            <span class="toggle-password" data-target="current-password">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="form-group password-container">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" class="form-control">
+                            <span class="toggle-password" data-target="new-password">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </span>
+                            <div id="new-password-validation" class="validation-message">
+                                University Security Policy: Minimum 12 characters with:
+                                - 1 uppercase letter
+                                - 1 number
+                                - 1 special character
+                                - No dictionary words
+                                Password expires quarterly
+                            </div>
+                        </div>
+
+                        <div class="form-group password-container">
+                            <label for="confirm-password">Confirm New Password</label>
+                            <input type="password" id="confirm-password" class="form-control">
+                            <span class="toggle-password" data-target="confirm-password">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </span>
+                            <div id="confirm-password-validation" class="validation-message">
+                                Passwords must match
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const navItems = document.querySelectorAll('.nav-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all nav items and tab contents
+                    navItems.forEach(navItem => navItem.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked nav item
+                    this.classList.add('active');
+
+                    // Show corresponding tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Toggle password visibility
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('svg');
+                    
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.innerHTML = '<path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/><path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299l.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/><path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884l-12-12 .708-.708 12 12-.708.708z"/>';
+                    } else {
+                        input.type = 'password';
+                        icon.innerHTML = '<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>';
+                    }
+                });
+            });
+
+            // Password validation
+            const newPassword = document.getElementById('new-password');
+            const confirmPassword = document.getElementById('confirm-password');
+            const newPasswordValidation = document.getElementById('new-password-validation');
+            const confirmPasswordValidation = document.getElementById('confirm-password-validation');
+
+            newPassword.addEventListener('input', function() {
+                const password = this.value;
+                const isValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password);
+                
+                if (password.length > 0) {
+                    if (isValid) {
+                        newPasswordValidation.classList.remove('invalid');
+                        newPasswordValidation.classList.add('valid');
+                        newPasswordValidation.textContent = 'Password meets requirements';
+                    } else {
+                        newPasswordValidation.classList.remove('valid');
+                        newPasswordValidation.classList.add('invalid');
+                        newPasswordValidation.textContent = 'Password must be at least 8 characters long and include a number and special character';
+                    }
+                } else {
+                    newPasswordValidation.classList.remove('valid', 'invalid');
+                }
+            });
+
+            confirmPassword.addEventListener('input', function() {
+                if (this.value.length > 0) {
+                    if (this.value === newPassword.value) {
+                        confirmPasswordValidation.classList.remove('invalid');
+                        confirmPasswordValidation.classList.add('valid');
+                        confirmPasswordValidation.textContent = 'Passwords match';
+                    } else {
+                        confirmPasswordValidation.classList.remove('valid');
+                        confirmPasswordValidation.classList.add('invalid');
+                        confirmPasswordValidation.textContent = 'Passwords must match';
+                    }
+                } else {
+                    confirmPasswordValidation.classList.remove('valid', 'invalid');
+                }
+            });
+
+            // Form submission
+            const personalForm = document.getElementById('personal-form');
+            const passwordForm = document.getElementById('password-form');
+            const successMessage = document.getElementById('success-message');
+
+            personalForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real app, you would send this data to a server
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            });
+
+            passwordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (newPassword.value !== confirmPassword.value) {
+                    confirmPasswordValidation.classList.add('invalid');
+                    confirmPasswordValidation.textContent = 'Passwords must match';
+                    return;
+                }
+                
+                // In a real app, you would send this data to a server
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+                
+                // Clear password fields
+                document.getElementById('current-password').value = '';
+                newPassword.value = '';
+                confirmPassword.value = '';
+            });
+        });
+    </script>
+</body>
+</html>
